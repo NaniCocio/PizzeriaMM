@@ -13,7 +13,7 @@ return (
         <ListGroup className="list-group-flush">
             <Card.Text className='ingre'>Ingredientes</Card.Text>
             <ListGroup.Item className='ingred'>🍕 {props.ingredientes}</ListGroup.Item>
-            <ListGroup.Item className='precio'>Precio: ${props.price}</ListGroup.Item>
+            <ListGroup.Item className='precio'>Precio: ${props.price.toLocaleString()}</ListGroup.Item>
         </ListGroup>
         <Card.Body>
             <Button variant="outline-dark" className="float-start">Ver Más 👀</Button>
