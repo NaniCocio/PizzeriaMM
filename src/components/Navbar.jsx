@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 
 const Navegacion =() => {
     const valor = 25000;
-    const token = false;
+    const token = true;
 
 return (
     <>

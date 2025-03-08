@@ -68,6 +68,12 @@ button:focus-visible {
   }
 }
 
+.navbar {
+  position: absolute;
+  width: 100%;
+  top: 0;
+}
+
 @media (min-width: 1250px) { 
   .navbar{
     height: 70px;
@@ -145,5 +151,25 @@ button:focus-visible {
   background-color: #000;
   padding: 10px;
   margin:auto;
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.form {
+  padding: 2.5rem;
+  padding-bottom: 3rem;
+  text-align: center;
+  margin: 30px 5rem 50px 5rem;
+}
+
+@media (min-width: 1250px) { 
+  .form{
+    margin-left: 20rem;
+    margin-right: 20rem;
+  }
+}
+
+.label{
+  margin-bottom: 10px;
 }
