@@ -6,6 +6,7 @@ import Home from './components/Home'
 import Navegacion from './components/Navbar'
 import Registro from './components/Registro'
 import Login from './components/Login'
+import Cart from './components/Cart'
 
 
 function App() {
@@ -13,9 +14,11 @@ function App() {
   return (
     <>
       <Navegacion/>
-      <Login />
-      {/*<Home />*/}
+      <Home />
       {/*<Registro/>*/}
+      {/*<Login />*/}
+
+      {/*<Cart/>*/}
       <Footer />
     </>
   )

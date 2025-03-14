@@ -111,17 +111,14 @@ button:focus-visible {
 
 .container{
   margin-top: 5px;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
   align-items: center;
   text-align: center;
   border-radius: .5rem;
   padding: 1.5rem;
 }
 
-.card{
-  margin-left: 150px;
-}
+
 .titulo{
   text-align: start;
   font-weight: 500;
@@ -151,7 +148,7 @@ button:focus-visible {
   background-color: #000;
   padding: 10px;
   margin:auto;
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%;
 }
@@ -172,4 +169,8 @@ button:focus-visible {
 
 .label{
   margin-bottom: 10px;
+}
+
+.imgPizza {
+  height: 60px;
 }
