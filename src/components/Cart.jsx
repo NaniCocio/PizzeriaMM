@@ -28,9 +28,11 @@ return (
                     <Col><img src={item.img} alt={item.name} width="50"/></Col>
                     <Col>{item.name}</Col>
                     <Col>${item.price.toLocaleString()}</Col>
-                    <Col><button className="btn btn-outline-danger" onClick={() => actualizar(item.id, -1)}>-</button></Col>
-                    <Col>{item.count}</Col>
-                    <Col><button className="btn btn-outline-primary" onClick={() => actualizar(item.id, 1)}>+</button></Col>
+                    <Col className="d-flex align-items-center gap-3">
+                            <button className="btn btn-outline-danger" onClick={() => actualizar(item.id, -1)}>-</button>
+                            <span>{item.count}</span>
+                            <button className="btn btn-outline-primary" onClick={() => actualizar(item.id, 1)}>+</button>
+                        </Col>
                     <Col> <button className='btn btn-outline-dark' onClick={() => eliminar(item.id)}>Eliminar</button></Col>  
                 </Row>
             ))}
