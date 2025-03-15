@@ -9,7 +9,7 @@ const Navegacion =() => {
     const token = true;
 
 return (
-    <>
+    <div>
         <Navbar collapseOnSelect className='navbar' expand="lg" bg='dark' data-bs-theme='dark'>
             {token ? (
                 <Container>
@@ -49,7 +49,7 @@ return (
             )}
             
         </Navbar>
-    </>
+    </div>
     
   )
 }

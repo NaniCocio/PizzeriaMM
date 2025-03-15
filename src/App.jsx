@@ -6,21 +6,20 @@ import Home from './components/Home'
 import Navegacion from './components/Navbar'
 import Registro from './components/Registro'
 import Login from './components/Login'
-import Cart from './components/Cart'
+import Carrito from './components/Cart'
 
 
 function App() {
 
   return (
-    <>
-      <Navegacion/>
-      <Home />
+    <div className='page-container'>
+      <Navegacion />
+      {/*<Home />*/}
       {/*<Registro/>*/}
       {/*<Login />*/}
-
-      {/*<Cart/>*/}
+      <Carrito/>
       <Footer />
-    </>
+    </div>
   )
 }
 
