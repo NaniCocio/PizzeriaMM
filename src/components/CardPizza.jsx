@@ -1,6 +1,7 @@
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { pizzas } from '../utils/pizzas';
 
 const CardPizza = (props) => {
 return (
@@ -11,8 +12,9 @@ return (
             <Card.Title className='titulo'>Pizza {props.name}</Card.Title>
         </Card.Body>
         <ListGroup className="list-group-flush">
-            <Card.Text className='ingre'>Ingredientes</Card.Text>
-            <ListGroup.Item className='ingred'>🍕 {props.ingredientes}</ListGroup.Item>
+            <Card.Text className='ingre'> 🍕 Ingredientes 🍕 </Card.Text>
+            {props.ingredientes.map((ingrediente, index)=>(<ListGroup.Item className='ingred'>{ingrediente}</ListGroup.Item>) 
+            )}
             <ListGroup.Item className='precio'>Precio: ${props.price.toLocaleString()}</ListGroup.Item>
         </ListGroup>
         <Card.Body>

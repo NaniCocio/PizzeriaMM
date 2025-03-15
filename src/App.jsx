@@ -14,10 +14,10 @@ function App() {
   return (
     <div className='page-container'>
       <Navegacion />
-      {/*<Home />*/}
+      <Home />
       {/*<Registro/>*/}
       {/*<Login />*/}
-      <Carrito/>
+      {/*<Carrito/>*/}
       <Footer />
     </div>
   )
