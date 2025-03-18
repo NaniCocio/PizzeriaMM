@@ -14,8 +14,8 @@ function App() {
   return (
     <div className='page-container'>
       <Navegacion />
-      <Home />
-      {/*<Registro/>*/}
+      {/*<Home />*/}
+      <Registro/>
       {/*<Login />*/}
       {/*<Carrito/>*/}
       <Footer />

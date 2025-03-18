@@ -8,12 +8,12 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 const Home = () => {
 
     return (
-        <div>
+        <div className='home'>
             <Header />
             <div className="container">
                 <div className='row row-cols-1 row-cols-md-4 g-2'>
                     {pizzas.map((pizza)=>(
-                        <CardPizza 
+                        <CardPizza key={pizza.id}
                             name={pizza.name} 
                             price={pizza.price}
                             ingredientes={pizza.ingredients} 

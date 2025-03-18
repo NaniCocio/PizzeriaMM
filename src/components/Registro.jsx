@@ -14,11 +14,9 @@ function Registro() {
         
     const handleConfirmPasswordChange = (e) => {
         setConfirmPassword(e.target.value);
-            if (e.target.value !== password) {
-                setError("Las contraseñas no coinciden");
-            } else {
-                setError("");
-            }
+        if (password && e.target.value === password) {
+            setError('');
+        }
     };
         
     const handleSubmit = (e) => {
@@ -26,10 +24,19 @@ function Registro() {
         if (email.trim() === '' || password.trim() === '' ||  confirmPassword.trim () === '') {
             e.stopPropagation();
             alert('Completa todos los campos');
-        }else {       
+            return; }
+
+        if (password !== confirmPassword) {
+            setError('Las contraseñas no coinciden');
+            return;
+
+        } else {   
+        setError('')    
         alert('Felicidades acabas de crear tu cuenta')
         setEmail('')
-        setPassword('')}
+        setPassword('')
+        setConfirmPassword('')
+    };
     }
     
 
