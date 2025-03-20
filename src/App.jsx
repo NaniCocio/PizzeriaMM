@@ -7,6 +7,7 @@ import Navegacion from './components/Navbar'
 import Registro from './components/Registro'
 import Login from './components/Login'
 import Carrito from './components/Cart'
+import Pizza from './components/Pizza'
 
 
 function App() {
@@ -14,10 +15,11 @@ function App() {
   return (
     <div className='page-container'>
       <Navegacion />
-      {/*<Home />*/}
-      <Registro/>
+      <Home />
+      {/*<Registro/>*/}
       {/*<Login />*/}
       {/*<Carrito/>*/}
+      {/*<Pizza />*/}
       <Footer />
     </div>
   )
