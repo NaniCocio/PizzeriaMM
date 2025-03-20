@@ -1,9 +1,11 @@
 import React from 'react'
+import Button from 'react-bootstrap/Button';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
 function Pizza() {  
   const [info, setInfo]= useState([])
+  const url = "http://localhost:5001/api/pizzas/P001"
 
   useEffect(() => { 
       consultaApi()  
@@ -12,21 +14,29 @@ function Pizza() {
 
   //Funcion consulta
   const consultaApi = async () => {
-      const url = "http://localhost:5001/api/pizzas/P001"
       const response = await fetch(url)
-      const data = await response.json()
-
-      setInfo(`${data.name} - ${data.price} - ${data.ingredients} - ${data.img} - ${data.desc}`) // nombre del pokemon
-
-      console.log(data, "<-- data en la consulta")
+      const info = await response.json()
+      setInfo(info);  
   }
+
 return (
-    <div>
-      <h1>VER INFO</h1>
-      <p>{info}</p>
- 
-      
+    <div className='contenedor-pizza'>
+      <h2 className='titulo-pizza'>Descubre la pizza que más te guste</h2>
+      <div className='contendor-card'>
+        <div className="card mb-3" style={{maxWidth: '320px'}}>
+            <img src={info.img} className="card-img-top" alt="..."/>
+          <div className="card-body">
+            <h5 className="card-title">{info.name}</h5>
+            <p className="card-text">{info.desc}</p>
+            <p className="card-text"><small className="text-body-secondary">Precio: ${info.price}</small></p>
+          </div>
+          <Button variant="dark" className="float-end">Añadir 🛒</Button>
+        </div>
+      </div>
+        
     </div>
+
+
 )};
 
 export default Pizza

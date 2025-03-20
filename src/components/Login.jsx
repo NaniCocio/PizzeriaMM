@@ -51,39 +51,6 @@ function Login() {
                     <button type="submit" className="btn btn-success">Enviar</button>
                 </div>
             </form>
-
-
-
-              {/*  <Form noValidate validated={validated} onSubmit={handleSubmit} >
-        <h1>Inicia Sesión</h1>
-        <br />
-        <Row className="mb-3">
-            <Form.Group as={Col} md="4" controlId="validationCustom01">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-            required
-            type="email"
-            placeholder="tuemail@ejemplo.com"
-            />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group as={Col} md="4" controlId="validationCustom02">
-            <br/>
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-            required
-            type="password"
-            placeholder="Ingresa tu Password"
-            />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group as={Col} md="4" controlId="validationCustomUsername">
-            </Form.Group>
-        </Row>
-        <Button variant="success" type="submit">Login</Button>
-        
-    </Form> */}
-
     </div>
 
     )

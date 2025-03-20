@@ -30,7 +30,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  width: 100%;
+
 }
 
 
@@ -72,15 +72,14 @@ button:focus-visible {
 }
 
 .navbar {
-  position: absolute;
+  position: fixed;
   width: 100%;
   top: 0;
 }
 
-
 @media (min-width: 1250px) { 
   .navbar{
-    height: 80px;
+    height: 70px;
   }
 }
 
@@ -194,4 +193,23 @@ button:focus-visible {
 
 .pagar{
   margin-top: 2.5rem;
+}
+
+.contenedor-pizza{ 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+.contendor-card{
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.card-text{
+  color: #000;
 }
