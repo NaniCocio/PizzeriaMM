@@ -22,8 +22,8 @@ function Pizza() {
 return (
     <div className='contenedor-pizza'>
       <h2 className='titulo-pizza'>Descubre la pizza que más te guste</h2>
-      <div className='contendor-card'>
-        <div className="card mb-3" style={{maxWidth: '320px'}}>
+      <div className='contenedor-card'>
+        <div className="card card-pizza mb-3" style={{width:'90%',maxWidth: '400px'}}>
             <img src={info.img} className="card-img-top" alt="..."/>
           <div className="card-body">
             <h5 className="card-title">{info.name}</h5>
