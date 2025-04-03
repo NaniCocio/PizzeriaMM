@@ -1,30 +1,30 @@
+import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-import ListGroup from 'react-bootstrap/ListGroup';
-import { pizzas } from '../utils/pizzas';
+import { usePizzaContext } from '../context/PizzaContext';
 
-const CardPizza = (props) => {
-return (
-    <div className='col'>
-            <Card style={{ width: '18rem' }} className='card h-100 text-center'>
-        <Card.Img className='img' variant="top" src={props.img} />
-        <Card.Body>
-            <Card.Title className='titulo'>Pizza {props.name}</Card.Title>
-        </Card.Body>
-        <ListGroup className="list-group-flush">
-            <Card.Text className='ingre'> 🍕 Ingredientes 🍕 </Card.Text>
-            {props.ingredientes.map((ingrediente, index)=>(<ListGroup.Item className='ingred'>{ingrediente}</ListGroup.Item>) 
-            )}
-            <ListGroup.Item className='precio'>Precio: ${props.price.toLocaleString()}</ListGroup.Item>
-        </ListGroup>
-        <Card.Body>
-            <Button variant="outline-dark" className="float-start">Ver Más 👀</Button>
-            <Button variant="dark" className="float-end">Añadir 🛒</Button>
-        </Card.Body>
-    </Card>
-    </div>
+const CardPizza = ({ pizza }) => {
+    const { agregarAlCarrito } = usePizzaContext();
 
-);
-}
+    return (
+        <Card className="m-2" style={{ width: '18rem' }}>
+            <Card.Img variant="top" src={pizza.img} alt={pizza.name} />
+            <Card.Body>
+                <Card.Title>{pizza.name}</Card.Title>
+                <Card.Text>{pizza.desc}</Card.Text>
+                <Card.Text>
+                    <strong>${pizza.price.toLocaleString()}</strong>
+                </Card.Text>
+                <Button variant="outline-dark" className="float-start">Ver Más 👀</Button>
+                <Button variant="dark" onClick={() => agregarAlCarrito(pizza)}>
+                    Añadir 🛒
+                </Button>
+            </Card.Body>
+        </Card>
+    );
+};
 
-export default CardPizza ;
+export default CardPizza;
+
+
+

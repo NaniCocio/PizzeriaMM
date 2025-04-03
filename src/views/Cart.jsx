@@ -1,47 +1,39 @@
-import React, { useState } from 'react';
-import { pizzaCart } from '../utils/pizzas';
+import React from 'react';
+import { usePizzaContext } from '../context/PizzaContext';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
 
 const Carrito = () => {
-    const [cart, setCart] = useState(pizzaCart);
+    const { cart, actualizar, eliminar } = usePizzaContext();
+    
+    // Calcular el total del carrito
+    const total = cart.reduce((sum, item) => sum + item.price * item.count, 0);
 
-    const actualizar = (id, delta) => {
-        setCart(cart.map(item =>
-            item.id === id? {...item, count: Math.max(1, item.count + delta)} : item
-        ));
-    }
-
-    const eliminar = (id) => {
-        setCart(cart.filter(item => item.id!== id));
-    };
-
-    const total = cart.reduce((acc, item) => acc + item.price * item.count, 0);
-
-
-return (
-    <div >
-        <h2>Detalles del pedido:</h2>
-        <div className='DetalleCarrito'>
-            {cart.map(item => (
-                <Row key={item.id} className='itemPizza'>
-                    <Col><img src={item.img} alt={item.name} width="50"/></Col>
-                    <Col>{item.name}</Col>
-                    <Col>${item.price.toLocaleString()}</Col>
-                    <Col className="d-flex align-items-center gap-3">
-                            <button className="btn btn-outline-danger" onClick={() => actualizar(item.id, -1)}>-</button>
-                            <span>{item.count}</span>
-                            <button className="btn btn-outline-primary" onClick={() => actualizar(item.id, 1)}>+</button>
-                        </Col>
-                    <Col> <button className='btn btn-outline-dark' onClick={() => eliminar(item.id)}>Eliminar</button></Col>  
+    return (
+        <div>
+            <h2 className='DetalleCarrito'>Carrito de Compras</h2>
+            {cart.map((item) => (
+                <Row key={item.id} className="align-items-center  itemPizza">
+                    <Col xs={2}>
+                        <Image src={item.img} alt={item.name} fluid rounded />
+                    </Col>
+                    <Col xs={3}>{item.name}</Col>
+                    <Col xs={2}>${item.price * item.count}</Col>
+                    <Col xs={3} className="d-flex align-items-center">
+                        <Button variant="outline-danger" onClick={() => actualizar(item.id, -1)}>-</Button>
+                        <span className="mx-2">{item.count}</span>
+                        <Button variant="outline-primary" onClick={() => actualizar(item.id, 1)}>+</Button>
+                    </Col>
+                    <Col xs={1}>
+                        <Button variant="dark" onClick={() => eliminar(item.id)}>🗑</Button>
+                    </Col>
                 </Row>
             ))}
-        </div>    
-        <h4>Total: ${total.toLocaleString()}</h4>
-        <button className='btn btn-dark pagar'>Pagar</button>
-    </div>
-)    
+            <h3>Total: ${total.toLocaleString()}</h3>
+        </div>
+    );
 };
-
 
 export default Carrito;

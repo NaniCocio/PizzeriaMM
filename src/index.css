@@ -122,6 +122,7 @@ button:focus-visible {
   .home {
     margin-top: 1.8rem;
   }
+
 }
 
 .header{
@@ -153,12 +154,14 @@ button:focus-visible {
 .container{
   margin-top: 5px;
   display: grid;
-  align-items: center;
+  align-items: space-between;
   text-align: center;
   border-radius: .5rem;
   padding: 1.5rem;
   margin-bottom: 3rem;
 }
+
+
 
 .titulo{
   text-align: start;
@@ -293,4 +296,26 @@ button:focus-visible {
 
 .card-text{
   color: #000;
+}
+
+.not {
+  font-size: 5rem;
+  font-weight: 800;
+  margin-top: 10rem;
+}
+
+.profile{
+  margin-top: 2rem;
+  display: flex;
+  align-items: space-between;
+  background-color: #fff;
+  height: 60px;
+
+}
+
+.login{
+  margin-left: 1rem;
+}
+.cierre{
+  margin-right: 1rem;
 }

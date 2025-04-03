@@ -1,43 +1,50 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import CardPizza from '../components/CardPizza';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Header from '../components/Header'
-import CardPizza from '../components/CardPizza'
-import { useEffect } from 'react';
-import { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'
 
-
-function Home () {
-    const [data, setData] = useState([]);
-    const url = "http://localhost:5001/api/pizzas"
+const Home = () => {
+    const [pizzas, setPizzas] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        consultarApi();
+        const fetchPizzas = async () => {
+            try {
+                const response = await fetch('http://localhost:5001/api/pizzas');
+                if (!response.ok) throw new Error('Error al cargar las pizzas');
+                const data = await response.json();
+                setPizzas(data);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchPizzas();
     }, []);
 
-    const consultarApi= async ()=>{
-        const response = await fetch(url);
-        const data = await response.json();
-        setData(data);  
-    };
+    if (loading) return <p>Cargando pizzas...</p>;
+    if (error) return <p>Error: {error}</p>;
 
     return (
-        <div className='home'>
-            <Header />
-            <div className="container">
-                <div className='row row-cols-1 row-cols-md-4 g-2'>
-                    {data.map((pizzas)=>(
-                        <CardPizza key={pizzas.id}
-                            name={pizzas.name} 
-                            price={pizzas.price}
-                            ingredientes={pizzas.ingredients} 
-                            img = {pizzas.img}
-                        />
-                    ))}
-                </div>
-            </div>
+    <div className='home'>
+        <Header />
+        <div className='container'>
+            <Row>
+                {pizzas.map((pizza) => (
+                    <Col key={pizza.id} md={4} sm={6} xs={12}>
+                        <CardPizza pizza={pizza} />
+                    </Col>
+                ))}
+            </Row>
         </div>
 
-    )
-}
+    </div>
 
-export default Home
+    );
+};
+
+export default Home;
