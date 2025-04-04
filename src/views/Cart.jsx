@@ -15,7 +15,7 @@ const Carrito = () => {
         <div>
             <h2 className='DetalleCarrito'>Carrito de Compras</h2>
             {cart.map((item) => (
-                <Row key={item.id} className="align-items-center  itemPizza">
+                <Row key={item.id} className="align-items-center itemPizza">
                     <Col xs={2}>
                         <Image src={item.img} alt={item.name} fluid rounded />
                     </Col>
@@ -32,6 +32,8 @@ const Carrito = () => {
                 </Row>
             ))}
             <h3>Total: ${total.toLocaleString()}</h3>
+            <Button variant="dark">Pagar</Button>
+            
         </div>
     );
 };
