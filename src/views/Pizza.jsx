@@ -1,42 +1,38 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Button from 'react-bootstrap/Button';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { ContentContext } from '../context/ContentContext';
+import { useParams } from 'react-router-dom';
+import { usePizzaContext } from '../context/PizzaContext';
 
-function Pizza() {  
-  const [info, setInfo]= useState([])
-  const url = "http://localhost:5001/api/pizzas/P001"
-
-  useEffect(() => { 
-      consultaApi()  
-  }, [])
-
-
-  //Funcion consulta
-  const consultaApi = async () => {
-      const response = await fetch(url)
-      const info = await response.json()
-      setInfo(info);  
-  }
-
-return (
-    <div className='contenedor-pizza'>
-      <h2 className='titulo-pizza'>Descubre la pizza que más te guste</h2>
-      <div className='contenedor-card'>
-        <div className="card card-pizza mb-3" style={{width:'90%',maxWidth: '400px'}}>
-            <img src={info.img} className="card-img-top" alt="..."/>
-          <div className="card-body">
-            <h5 className="card-title">{info.name}</h5>
-            <p className="card-text">{info.desc}</p>
-            <p className="card-text"><small className="text-body-secondary">Precio: ${info.price}</small></p>
+const Pizza = () => {
+    const { id } = useParams(); // ← obtiene el ID dinámico desde la URL
+    const { pizzas, loading } = useContext(ContentContext);
+    const { agregarAlCarrito } = usePizzaContext();
+  
+    if (loading) return <p>Cargando pizza...</p>;
+  
+    const pizza = pizzas.find((p) => p.id === id);
+  
+    if (!pizza) return <p>Pizza no encontrada 😢</p>;
+  
+    return (
+      <div className='contenedor-pizza'>
+        <h2 className='titulo-pizza'>Descubre la pizza que más te guste</h2>
+        <div className='contenedor-card'>
+          <div className="card card-pizza mb-3" style={{ width: '90%', maxWidth: '400px' }}>
+            <img src={pizza.img} className="card-img-top" alt={pizza.name} />
+            <div className="card-body">
+              <h5 className="card-title">{pizza.name}</h5>
+              <p className="card-text">{pizza.desc}</p>
+              <p className="card-text">
+                <small className="text-body-secondary">Precio: ${pizza.price}</small>
+              </p>
+            </div>
+            <Button variant="dark" className="float-end" onClick={() => agregarAlCarrito(pizza)}>Añadir 🛒</Button>
           </div>
-          <Button variant="dark" className="float-end">Añadir 🛒</Button>
         </div>
       </div>
-        
-    </div>
+    );
+};
 
-
-)};
-
-export default Pizza
+  export default Pizza;

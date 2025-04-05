@@ -25,7 +25,7 @@ function App() {
           <Route path='/login' element={<Login />}/>
           <Route path='/registro' element={<Registro />}/>
           <Route path='/cart' element={<Carrito />}/>
-          <Route path='/pizza/p001' element={<Pizza />}/>
+          <Route path='/pizza/:id' element={<Pizza />}/>
           <Route path='/profile' element={<Profile />}/>
           <Route path='*' element={<NotFound />} />
         </Routes>
