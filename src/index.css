@@ -333,12 +333,14 @@ button:focus-visible {
 }
 
 .profile{
-  margin-top: 2rem;
+  margin-top: 1.8rem;
+  margin-left: 5px;
   display: flex;
   align-items: space-between;
   background-color: #fff;
   height: 60px;
-
+  font-weight: 800;
+  color: #000;
 }
 
 .login{
