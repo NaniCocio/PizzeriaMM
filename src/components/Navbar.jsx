@@ -41,7 +41,7 @@ return (
                         <Button variant="outline-light" className="link" as={Link} to="/login">🔐 Login</Button>
                         <Button variant="outline-light" className="link" as={Link} to="/registro">🔐 Register</Button>
                     </Nav>
-                    <Button variant="outline-info" className="float-end" as={Link} to="/cart">🛒 Total: $ {total.toLocaleString()}</Button>
+                    <Button variant="outline-info" className="float-end link" as={Link} to="/cart">🛒 Total: $ {total.toLocaleString()}</Button>
                 </Navbar.Collapse>
             </Container>
             )}
