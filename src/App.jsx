@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 import Footer from './components/Footer'
@@ -10,11 +9,13 @@ import Carrito from './views/Cart'
 import Pizza from './views/Pizza'
 import NotFound from './views/NotFound'
 import Profile from './views/Profile'
-import { Routes, Route } from'react-router-dom'
+import { Routes, Route, Navigate} from'react-router-dom'
 import { PizzaProvider } from './context/PizzaContext'
+import { useUser } from './context/UserContext'
 
 
 function App() {
+  const {token} = useUser()
 
   return (
     <div className='page-container'>
@@ -26,7 +27,7 @@ function App() {
           <Route path='/registro' element={<Registro />}/>
           <Route path='/cart' element={<Carrito />}/>
           <Route path='/pizza/:id' element={<Pizza />}/>
-          <Route path='/profile' element={<Profile />}/>
+          <Route path='/profile' element={token ?<Profile /> : <Navigate to='/login'/>}/>
           <Route path='*' element={<NotFound />} />
         </Routes>
       </PizzaProvider>

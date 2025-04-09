@@ -1,5 +1,6 @@
 import React from 'react';
 import { usePizzaContext } from '../context/PizzaContext';
+import { useUser } from '../context/UserContext';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
@@ -7,12 +8,13 @@ import Image from 'react-bootstrap/Image';
 
 const Carrito = () => {
     const { cart, actualizar, eliminar } = usePizzaContext();
+    const { token } = useUser()
     
     // Calcular el total del carrito
     const total = cart.reduce((sum, item) => sum + item.price * item.count, 0);
 
     return (
-        <div>
+        <div className='carrito-container'>
             <h2 className='DetalleCarrito'>Carrito de Compras</h2>
             {cart.map((item) => (
                 <Row key={item.id} className="align-items-center itemPizza">
@@ -31,8 +33,13 @@ const Carrito = () => {
                     </Col>
                 </Row>
             ))}
+            
             <h3>Total: ${total.toLocaleString()}</h3>
-            <Button variant="dark">Pagar</Button>
+            <Button variant="dark" disabled={!token} >Pagar</Button>
+            {!token && <p style={{color: "red", marginTop: "10px"}}>Debes iniciar sesión para pagar.</p>}
+
+            
+            
             
         </div>
     );

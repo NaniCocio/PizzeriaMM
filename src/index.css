@@ -72,10 +72,28 @@ button:focus-visible {
 }
 
 .navbar {
-  z-index: 1000;
+  z-index: 1050 !important;
+  position: fixed;
   height: 120px;
   padding: 10px 0;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease ;
+  background-color: #000 !important;
+
+}
+.titulo-nav{
+  color: #ffffff;
+}
+
+
+.navbar-collapse {
+  width: 100vw;
+  left: 0;
+  right: 0;
+  z-index: 1060;
+  top: 100%;
+  background-color: #000;
+  padding: 1rem;
+  position: relative;
 }
 .contenido-navbar{
   padding-top: 100px;
@@ -96,33 +114,15 @@ button:focus-visible {
   padding: 8px 16px; /* Ajustar el tamaño de los botones */
 }
 
-/* Ajuste del espaciado de los botones para pantallas pequeñas */
-@media (max-width: 576px) {
-  .navbar {
-    height: 100px;  /* Ajusta más el alto en pantallas pequeñas */
-    padding: 5px 0; 
- /* Reduce aún más el padding */
-  }
-
-  .navbar .link {
-    padding: 4px 8px;  /* Ajusta el tamaño de los botones */
-  }
-}
-
 .link{
   margin-left: 5px;
+  margin-top: 1rem;
 }
 
 .home {
   margin-top: 10rem;
 }
 
-@media (min-width: 480px) {
-  .home {
-    margin-top: 1.8rem;
-  }
-
-}
 
 .header{
   background-image: url("./img/header.jpg");
@@ -159,9 +159,6 @@ button:focus-visible {
   padding: 1.5rem;
   margin-bottom: 3rem;
 }
-
-
-
 
 .titulo{
   text-align: start;
@@ -202,13 +199,6 @@ button:focus-visible {
   padding-bottom: 3rem;
   text-align: center;
   margin: 30px 5rem 50px 5rem;
-}
-
-@media (min-width: 1250px) { 
-  .form{
-    margin-left: 20rem;
-    margin-right: 20rem;
-  }
 }
 
 .label{
@@ -265,12 +255,23 @@ button:focus-visible {
 }
 
 /* Pantallas grandes */
+
+@media (min-width: 1250px) { 
+  .form{
+    margin-left: 20rem;
+    margin-right: 20rem;
+  }
+
+}
 @media (min-width: 1024px) {
   .card-pizza {
     max-width: 600px;
   }
   .titulo-pizza {
     font-size: 2rem;
+  }
+  .navbar-collapse{
+    position: relative !important;
   }
 }
 
@@ -287,6 +288,17 @@ button:focus-visible {
   }
 }
 
+@media (max-width: 576px) {
+  .navbar {
+    height: 100px;  
+    padding: 5px 0; 
+  }
+
+  .navbar .link {
+    padding: 4px 8px; 
+  } 
+}
+
 /* Móviles */
 @media (max-width: 480px) {
   .card-pizza {
@@ -299,6 +311,15 @@ button:focus-visible {
     margin-top: 10px;
   }
 
+}
+
+@media (min-width: 480px) {
+  .home {
+    margin-top: 1.8rem;
+  }
+  .navbar-collapse{
+    position: absolute;
+  }
 }
 
 .card-text{
@@ -326,3 +347,8 @@ button:focus-visible {
 .cierre{
   margin-right: 1rem;
 }
+
+.carrito-container{
+  padding-bottom: 120px;
+}
+
