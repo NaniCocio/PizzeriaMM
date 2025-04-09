@@ -5,13 +5,15 @@ const UserContext = createContext();
 
 export const UserProvider = ({children}) => {
     const [token, setToken] = useState(true); //sesión cerrada
+    const [user, setUser] = useState(null);
+
     const login = (newToken) => {
         setToken(newToken);
     };
     const logout =() => {
         setToken(false);
     }
-    const [user, setUser] = useState(null);
+
 
     return (
         <UserContext.Provider value={{ token, login, logout, user, setUser}}>

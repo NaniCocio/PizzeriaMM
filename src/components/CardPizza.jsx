@@ -12,7 +12,9 @@ const CardPizza = ({ pizza }) => {
             <Card.Img variant="top" src={pizza.img} alt={pizza.name} />
             <Card.Body>
                 <Card.Title className='titulo-pizza'>{pizza.name}</Card.Title>
-                <Card.Text>{pizza.desc}</Card.Text>
+                <Card.Text>
+                    🍕 {pizza.ingredients} 🍕 
+                </Card.Text>
                 <Card.Text>
                     <strong>${pizza.price.toLocaleString()}</strong>
                 </Card.Text>

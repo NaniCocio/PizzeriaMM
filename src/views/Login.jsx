@@ -12,7 +12,7 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const form = e.currentTarget;
+        const form = e.currentTarget; 
         const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{6,}$/;
         if (!passwordRegex.test(password)) {
             alert('La contraseña debe tener al menos 6 caracteres, un número y un carácter especial (!@#$%^&*).')
