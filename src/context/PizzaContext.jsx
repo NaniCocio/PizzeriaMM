@@ -4,7 +4,7 @@ import { pizzaCart } from '../utils/pizzas';
 const PizzaContext = createContext();
 
 export const PizzaProvider = ({ children }) => {
-    const [cart, setCart] = useState(pizzaCart);
+    const [cart, setCart] = useState([]);
 
     const actualizar = (id, delta) => {
         setCart(prevCart => prevCart.map(item =>
