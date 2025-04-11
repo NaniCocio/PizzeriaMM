@@ -1,17 +1,21 @@
 import React from 'react'
 import { useState } from 'react';
+import { useUser } from '../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
     const [email, setEmail] = useState ('')
     const [password, setPassword] = useState ('')
     const [validated, setValidated] = useState(false);
+    const { login , error, isLoading } = useUser();
+    const navigate = useNavigate()
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         const form = e.currentTarget; 
         const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{6,}$/;
         if (!passwordRegex.test(password)) {
@@ -21,13 +25,19 @@ function Login() {
         }
         if (form.checkValidity() === false || password === '' ) {
             e.stopPropagation()
-            alert('Todos los campos son obligatorios')
-            
+            alert('Todos los campos son obligatorios')    
         }else {
-        setValidated(true)
-        alert('Felicidades acabas de iniciar sesión')
-        setEmail('')
-        setPassword('')
+            setValidated(true);
+            try {
+                await login (email, password);
+                alert('Felicidades acabas de iniciar sesión')
+                setEmail('')
+                setPassword('')
+                navigate('/profile')
+            } catch (err) {
+                console.error("error inicio de sesion" , err)
+                alert ('Error en el inicio de sesión. Intenta de nuevo')
+            }
         }
     }
 
@@ -48,9 +58,11 @@ function Login() {
                     id="Password" placeholder="Contraseña" title='Debe tener al menos 6 caracteres, un número y un carácter especial (!@#$%^&*).' />
                 </div>
                 <div className="d-grid mx-auto">
-                    <button type="submit" className="btn btn-success">Enviar</button>
+                    <button type="submit" className="btn btn-success" disabled={isLoading}>{isLoading ? 'Cargando...' : 'Enviar'}</button>
                 </div>
             </form>
+
+            {error && <div className='alert alert-danger mt-3'>{error}</div>}
     </div>
 
     )

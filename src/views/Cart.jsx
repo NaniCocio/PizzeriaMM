@@ -7,11 +7,35 @@ import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 
 const Carrito = () => {
-    const { cart, actualizar, eliminar } = usePizzaContext();
+    const { cart, actualizar, eliminar, setCart } = usePizzaContext();
     const { token } = useUser()
     
     // Calcular el total del carrito
     const total = cart.reduce((sum, item) => sum + item.price * item.count, 0);
+
+    const handleCheckout = async() => {
+        try {
+            const res = await fetch ('http://localhost:5001/api/checkouts' , {
+                method: 'POST',
+                headers: {
+                    'Content-Type' : 'application:json',
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    items: cart.map(({id, name, price, count}) => ({id, name, price, quantity: count})),
+                    total
+                })
+            });
+            if (!res.ok) throw new Error ('Error al procesar el pago');
+            const data = await res.json();
+            alert ('Compra realizada con éxito');
+            console.log('Respuesta del servidor', data);
+            setCart([])
+        } catch (error) {
+            console.error('Error al hacer el checkout:' , error);
+            alert ('Hubo un problema al procesar su pago');
+        }
+    };
 
     return (
         <div className='carrito-container'>
@@ -35,7 +59,7 @@ const Carrito = () => {
             ))}
             
             <h3>Total: ${total.toLocaleString()}</h3>
-            <Button variant="dark" disabled={!token} >Pagar</Button>
+            <Button variant="dark" disabled={!token} onClick={handleCheckout} >Pagar</Button>
             {!token && <p style={{color: "red", marginTop: "10px"}}>Debes iniciar sesión para pagar.</p>}
 
             

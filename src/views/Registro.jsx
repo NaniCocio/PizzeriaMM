@@ -1,5 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
+import { useUser } from '../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 
 function Registro() {
@@ -7,6 +9,9 @@ function Registro() {
     const [password, setPassword] = useState ('')
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState('');
+
+    const { register } = useUser();
+    const navigate = useNavigate();
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
@@ -19,7 +24,7 @@ function Registro() {
         }
     };
         
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         if (email.trim() === '' || password.trim() === '' ||  confirmPassword.trim () === '') {
             e.stopPropagation();
@@ -29,24 +34,28 @@ function Registro() {
         if (password !== confirmPassword) {
             setError('Las contraseñas no coinciden');
             return;
-
-        } else {   
-        setError('')    
-        alert('Felicidades acabas de crear tu cuenta')
-        setEmail('')
-        setPassword('')
-        setConfirmPassword('')
-    };
+        } 
+        try {   
+            await register({email, password});
+            alert('Felicidades acabas de crear tu cuenta')
+            setError('')    
+            setEmail('')
+            setPassword('')
+            setConfirmPassword('')
+            navigate('/profile');
+        } catch (err){
+            setError('Ocurrio un error al registrarse, favor intenta de nuevo')
+        };
     }
     
 
-  return (
+return (
     <div className='form'>
         <form onSubmit={handleSubmit} >
         <h2>Crea tu cuenta</h2>
         <br />
         <div className="mb-3">
-                <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="tuemail@ejemplo.com" value={email} onChange={(e)=> setEmail(e.target.value)} />
+                <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="tuemail@ejemplo.com" value={email} onChange={(e)=> setEmail(e.target.value)} required />
             </div>
             <div class="mb-3">
                 <input type="password" className="form-control" 
